@@ -22,6 +22,10 @@ module.exports = {
     },
     resolve: {
         root: __dirname,
+        modulesDirectories: [
+            'node_modules',
+            './app/components'
+        ],
         alias: {
             applicationStyles: 'app/styles/app.scss'
         },
@@ -45,5 +49,5 @@ module.exports = {
         ]
     }
     // To view code in source format
-    //devtool: 'inline-source-map'
+    //devtool: 'cheap-module-eval-source-map'
 };
