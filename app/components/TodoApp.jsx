@@ -2,7 +2,7 @@ var React = require('react');
 var uuid = require('node-uuid');
 var moment = require('moment');
 
-var TodoList = require('TodoList.jsx');
+import TodoList from 'TodoList.jsx'
 var AddTodo = require('AddTodo.jsx');
 var TodoSearch = require('TodoSearch.jsx');
 var TodoAPI = require('TodoAPI.jsx');
