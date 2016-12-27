@@ -27259,6 +27259,10 @@
 
 	var _TodoList2 = _interopRequireDefault(_TodoList);
 
+	var _AddTodo = __webpack_require__(415);
+
+	var _AddTodo2 = _interopRequireDefault(_AddTodo);
+
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 	function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr2 = Array(arr.length); i < arr.length; i++) { arr2[i] = arr[i]; } return arr2; } else { return Array.from(arr); } }
@@ -27267,7 +27271,6 @@
 	var uuid = __webpack_require__(253);
 	var moment = __webpack_require__(312);
 
-	var AddTodo = __webpack_require__(415);
 	var TodoSearch = __webpack_require__(416);
 	var TodoAPI = __webpack_require__(417);
 
@@ -27327,7 +27330,7 @@
 	                        { className: 'container' },
 	                        React.createElement(TodoSearch, { onSearch: this.handleSearch }),
 	                        React.createElement(_TodoList2.default, null),
-	                        React.createElement(AddTodo, { onAddTodo: this.handleAddTodo })
+	                        React.createElement(_AddTodo2.default, { onAddTodo: this.handleAddTodo })
 	                    )
 	                )
 	            )
@@ -48684,9 +48687,17 @@
 
 	'use strict';
 
+	Object.defineProperty(exports, "__esModule", {
+	    value: true
+	});
 	var React = __webpack_require__(8);
 
-	var AddTodo = React.createClass({
+	var _require = __webpack_require__(166),
+	    connect = _require.connect;
+
+	var actions = __webpack_require__(414);
+
+	var AddTodo = exports.AddTodo = React.createClass({
 	    displayName: 'AddTodo',
 
 	    handleSubmit: function handleSubmit(e) {
@@ -48694,7 +48705,9 @@
 	        var todoText = this.refs.todoText.value;
 	        if (todoText.length > 0) {
 	            this.refs.todoText.value = '';
-	            this.props.onAddTodo(todoText);
+	            var dispatch = this.props.dispatch;
+
+	            dispatch(actions.addTodo(todoText));
 	        } else {
 	            this.refs.todoText.focus();
 	        }
@@ -48717,7 +48730,7 @@
 	    }
 	});
 
-	module.exports = AddTodo;
+	exports.default = connect()(AddTodo);
 
 /***/ },
 /* 416 */
@@ -48910,6 +48923,8 @@
 	                        completed: nextCompleted,
 	                        completedAt: nextCompleted ? moment().unix() : undefined
 	                    });
+	                } else {
+	                    return todo;
 	                }
 	            });
 
